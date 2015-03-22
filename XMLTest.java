@@ -1,5 +1,3 @@
-
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -102,7 +100,7 @@ public class XMLTest {
 		coords[0] = Integer.parseInt(empEl.getAttribute("x"));
 		coords[1] = Integer.parseInt(empEl.getAttribute("y"));
 		coords[2] = Integer.parseInt(empEl.getAttribute("z"));
-		//Systems[] systems = empEl.getAttribute("type");
+		//StarSystem[] systems = empEl.getAttribute("type");
 
 
 		//Create a new Employee with the value read from the xml nodes

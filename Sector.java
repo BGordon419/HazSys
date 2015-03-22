@@ -3,29 +3,21 @@ public class Sector {
    private String sectorId;
    private String name;
    private int[] coords = new int[3];
-   private Systems[] systems = new Systems[0];
+   private StarSystem[] systems = new StarSystem[0];
 
 // Constructors
-   public Sector(String id) {
-      sectorId = id;
-      name = "";
-   }
-   public Sector(String id, String nameIn) {
-      sectorId = id;
-      name = nameIn;
-   }
    public Sector(String id, String nameIn, int[] coordsIn) {
       sectorId = id;
       name = nameIn;
       coords = coordsIn;
    }
-   public Sector(String id, String nameIn, int[] coordsIn, Systems[] systemIn) {
+   public Sector(String id, String nameIn, int[] coordsIn, StarSystem[] systemIn) {
       sectorId = id;
       name = nameIn;
       coords = coordsIn;
       systems = systemIn;
    }
-   public Sector(String id, String nameIn, int x, int y, int z, Systems[] systemIn) {
+   public Sector(String id, String nameIn, int x, int y, int z, StarSystem[] systemIn) {
       sectorId = id;
       name = nameIn;
       coords[0] = x;
@@ -33,14 +25,14 @@ public class Sector {
       coords[2] = z;
       systems = systemIn;
    }
-/**
- * public Sector(Sector in) {
- * sectorId = in.sectorId;
- * name = in.name;
- * coords = in.coords;
- * systems = in.systems;
- * }
-**/
+   /**
+   public Sector(Sector in) {
+   sectorId = in.sectorId;
+   name = in.name;
+   coords = in.coords;
+   systems = in.systems;
+   }
+   **/
 
 // Methods
    public String getName() {
@@ -62,10 +54,10 @@ public class Sector {
       else
          return 0;
    }
-   public Systems[] getSystems() {
+   public StarSystem[] getSystems() {
       return systems;
    }
-   public Systems getSystem(int sys) {
+   public StarSystem getSystem(int sys) {
       return systems[sys];
    }
    public int numberOfSystems() {
@@ -78,9 +70,12 @@ public class Sector {
       return new Sector(sectorId, name, coords, systems);
    }
    public String toString() {
-
-      return "ID: "+sectorId+", Name: "+name+
-                  ", Coordinates: "+coords[0]+","+coords[1]+","+coords[2]+
-                  ", Number of Systems: "+systems.length;
+      if(systems==null)
+         return "Error: Sector Empty.\nID: "+sectorId+", Name: "+name+
+                  ", Coordinates: "+coords[0]+","+coords[1]+","+coords[2];
+      else
+         return "ID: "+sectorId+", Name: "+name+
+               ", Coordinates: "+coords[0]+","+coords[1]+","+coords[2]+
+               ", Number of Systems: "+systems.length;
    }
 }
