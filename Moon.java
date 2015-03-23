@@ -16,8 +16,8 @@ public class Moon extends Body {
       bio = b;
    }
 
-   public Planet copy() {
-      return new Planet(super.getId(), super.getName(), bodyType, super.getOrbit(), zone);
+   public Moon copy() {
+      return new Moon(super.getId(), super.getName(), bodyType, super.getOrbit(), zone);
    }
    public String toString() {
       return super.toString()+", Type: "+bodyType+", Zone: "+zone;
