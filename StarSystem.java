@@ -3,46 +3,44 @@ public class StarSystem {
    private String systemId;
    private String name;
    private double[] coords = new double[3];
-   private boolean explored;
+   private char eod;
 
    private Wormhole[] wormholes;
-   private Star[] stars;
-   private Planet[] planets;
+   private Body[] bodies;
 
-   public StarSystem(String id, String nameIn, double[] coordsIn, boolean exp) {
+   public StarSystem(String id, String nameIn, double[] coordsIn, char exp) {
       systemId = id;
       name = nameIn;
       coords = coordsIn;
-      explored = exp;
+      eod = exp;
    }
-   public StarSystem(String id, String nameIn, double x, double y, double z, boolean exp) {
+   public StarSystem(String id, String nameIn, double x, double y, double z, char exp) {
       systemId = id;
       name = nameIn;
       coords[0] = x;
       coords[1] = y;
       coords[2] = z;
-      explored = exp;
+      eod = exp;
    }
 
-   public void fillSystem(Wormhole[] whIn, Star[] starsIn, Planet[] planetsIn) {
+   public void fill(Wormhole[] whIn, Body[] bodyIn) {
       wormholes = whIn;
-      stars = starsIn;
-      planets = planetsIn;
+      bodies = bodyIn;
    }
-   public Systems copy() {
-      Systems newSystem =  new Systems(systemId, name, coords, explored);
-      newSystem.fillSystem(wormholes, stars, planets);
+   public StarSystem copy() {
+      StarSystem newSystem =  new StarSystem(systemId, name, coords, eod);
+      newSystem.fill(wormholes, bodies);
       return newSystem;
    }
    public String toString() {
-      if (stars==null||wormholes==null||planets==null)
+      if (wormholes==null||bodies==null)
          return "Error: System Empty.\nID: "+systemId+", Name: "+name+
                   ", Coordinates: "+coords[0]+","+coords[1]+","+coords[2]+
-                  ", Explored: "+ explored;
+                  ", Explored: "+ eod;
       else
          return "ID: "+systemId+", Name: "+name+
                   ", Coordinates: "+coords[0]+","+coords[1]+","+coords[2]+
-                  ", Number of Bodies: "+(stars.length+planets.length)+
-                  ", Number of Wormholes: "+wormholes.length+", Explored: "+ explored;
+                  ", Number of Bodies: "+(bodies.length)+
+                  ", Number of Wormholes: "+wormholes.length+", Explored: "+ eod;
    }
 }
