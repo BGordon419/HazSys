@@ -74,7 +74,7 @@ public class XMLTest {
 				Element el = (Element)nl.item(i);
 
 				//get the Employee object
-				Sector e = getEmployee(el);
+				Sector e = getSector(el);
 
 				//add it to list
 				myEmpls.add(e);
@@ -89,7 +89,7 @@ public class XMLTest {
 	 * @param empEl
 	 * @return
 	 */
-	private Sector getEmployee(Element empEl) {
+	private Sector getSector(Element empEl) {
 
 		//for each <employee> element get text or int values of
 		//name ,id, age and name

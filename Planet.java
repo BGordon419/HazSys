@@ -5,6 +5,7 @@ public class Planet extends Body {
 
    private Geosphere geo;
    private Atmosphere atmo;
+   private Hydrosphere hydro;
    private Biosphere bio;
 
    public Planet(String nameIn, String idIn, String orbitIn, String type, String zoneIn) {
@@ -12,9 +13,10 @@ public class Planet extends Body {
       bodyType = type;
       zone = zoneIn;
    }
-   public void fill(Geosphere g, Atmosphere a, Biosphere b) {
+   public void fill(Geosphere g, Atmosphere a, Hydrosphere h, Biosphere b) {
       geo = g;
       atmo = a;
+      hydro = h;
       bio = b;
    }
 
