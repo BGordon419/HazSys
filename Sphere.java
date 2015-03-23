@@ -1,4 +1,9 @@
-public class Sphere {
+import java.util.ArrayList;
+
+public class Sphere  {
+
+   ArrayList list;
+
 
 
 }

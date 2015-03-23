@@ -1,4 +1,6 @@
-public class Geosphere extends Sphere {
+import java.util.ArrayList;
 
+public class Geosphere extends ArrayList {
 
+   
 }
