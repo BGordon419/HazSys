@@ -15,13 +15,13 @@ import org.xml.sax.SAXException;
 public class XMLTest {
 
 	//No generics
-	List myEmpls;
+	List sectors;
 	Document dom;
 
 
 	public XMLTest(){
 		//create a list to hold the employee objects
-		myEmpls = new ArrayList();
+		sectors = new ArrayList();
 	}
 
 	public void runExample() {
@@ -77,7 +77,7 @@ public class XMLTest {
 				Sector e = getSector(el);
 
 				//add it to list
-				myEmpls.add(e);
+				sectors.add(e);
 			}
 		}
 	}
@@ -89,7 +89,7 @@ public class XMLTest {
 	 * @param empEl
 	 * @return
 	 */
-	private Sector getSector(Element empEl) {
+	private void oldGetSector(Element empEl) {
 
 		//for each <employee> element get text or int values of
 		//name ,id, age and name
@@ -104,11 +104,130 @@ public class XMLTest {
 
 
 		//Create a new Employee with the value read from the xml nodes
-		Sector e = new Sector(sectorId, name, coords);
+		//Sector e = new Sector(sectorId, name, coords);
 
-		return e;
+		//return e;
 	}
 
+	private Sector getSector(Element secEl) {
+
+		ArrayList<StarSystem> systems = new ArrayList<StarSystem>();
+
+		// Do element in a node have their own elements?
+		NodeList nl = secEl.getElementsByTagName("system");
+		if(nl != null && nl.getLength() > 0) {
+			for(int i = 0 ; i < nl.getLength();i++) {
+
+				//get the element
+				Element el = (Element)nl.item(i);
+
+				//add star systems to arrayList
+				systems.add(getStarSystem(el));
+			}
+		}
+
+			return new Sector(getId(secEl),getName(secEl),getCoords(secEl),systems);
+	}
+
+	private StarSystem getStarSystem(Element sysEl) {
+
+		ArrayList<Wormhole> wh = new ArrayList<Wormhole>();
+		ArrayList<Body> body = new ArrayList<Body>();
+
+		// Do element in a node have their own elements?
+		NodeList nl = sysEl.getElementsByTagName("system");
+		if(nl != null && nl.getLength() > 0) {
+			for(int i = 0 ; i < nl.getLength();i++) {
+
+				//get the element
+				Element el = (Element)nl.item(i);
+
+				//add wormhole and bodies objects to arrayList
+				wh.add(getWormhole(el));
+				body.add(getBody(el));
+			}
+		}
+
+		return new StarSystem(getId(sysEl),getName(sysEl),getCoords(sysEl),(sysEl.getAttribute("eod").charAt(0)),wh,body);
+	}
+
+	private Resource getResource(Element recEl) {
+		int[] q, a;
+		String name = recEl.getAttribute("name");
+
+		if(recEl.hasAttribute("qualityZone3")==true) {
+			q = new int[3];
+			a = new int[3];
+
+			q[0] = Integer.parseInt(recEl.getAttribute("qualityZone1"));
+			q[1] = Integer.parseInt(recEl.getAttribute("qualityZone2"));
+			q[2] = Integer.parseInt(recEl.getAttribute("qualityZone3"));
+
+			a[0] = Integer.parseInt(recEl.getAttribute("abundanceZone1"));
+			a[1] = Integer.parseInt(recEl.getAttribute("abundanceZone2"));
+			a[2] = Integer.parseInt(recEl.getAttribute("abundanceZone3"));
+		}
+		else if (recEl.hasAttribute("qualityZone2")==true) {
+			q = new int[2];
+			a = new int[2];
+
+			q[0] = Integer.parseInt(recEl.getAttribute("qualityZone1"));
+			q[1] = Integer.parseInt(recEl.getAttribute("qualityZone2"));
+
+			a[0] = Integer.parseInt(recEl.getAttribute("abundanceZone1"));
+			a[1] = Integer.parseInt(recEl.getAttribute("abundanceZone2"));
+		}
+		else {
+			q = new int[1];
+			a = new int[1];
+
+			q[0] = Integer.parseInt(recEl.getAttribute("qualityZone1"));
+			a[0] = Integer.parseInt(recEl.getAttribute("abundanceZone1"));
+		}
+
+		return new Resource(name,q,a);
+	}
+
+	private Wormhole getWormhole(Element whEl) {
+
+	}
+
+	private Body getBody(Element bodyEl) {
+
+	}
+
+	private <T> T getCoords(Element coordEl) {
+
+		//get coordinates
+		T[] coords;
+		coords[0] = Integer.parseInt(coordEl.getAttribute("x"));
+		coords[1] = Integer.parseInt(coordEl.getAttribute("y"));
+		coords[2] = Integer.parseInt(coordEl.getAttribute("z"));
+		return coords;
+	}
+	private String getName(Element nameEl) {
+		return nameEl.getAttribute("name");
+	}
+	private String getId(Element idEl) {
+		return idEl.getAttribute(idEl.getTagName()+"Id");
+	}
+/**
+	private Employee getEmployee(Element empEl) {
+
+	//for each <employee> element get text or int values of
+	//name ,id, age and name
+	String name = getTextValue(empEl,"Name");
+	int id = getIntValue(empEl,"Id");
+	int age = getIntValue(empEl,"Age");
+
+	String type = empEl.getAttribute("type");
+
+	//Create a new Employee with the value read from the xml nodes
+	Employee e = new Employee(name,id,age,type);
+
+	return e;
+}
+**/
 
 	/**
 	 * I take a xml element and the tag name, look for the tag and get
@@ -148,9 +267,9 @@ public class XMLTest {
 	 */
 	private void printData(){
 
-		System.out.println("No of Sectors '" + myEmpls.size() + "'.");
+		System.out.println("No of Sectors '" + sectors.size() + "'.");
 
-		Iterator it = myEmpls.iterator();
+		Iterator it = sectors.iterator();
 		while(it.hasNext()) {
 			System.out.println(it.next().toString());
 		}

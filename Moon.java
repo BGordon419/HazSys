@@ -1,17 +1,19 @@
+import java.util.ArrayList;
+
 public class Moon extends Body {
 
    private String bodyType;
    private String zone;
 
-   private Geosphere geo;
-   private Biosphere bio;
+   private ArrayList<Resource> geo;
+   private ArrayList<Resource> bio;
 
    public Moon(String nameIn, String idIn, String orbitIn, String type, String zoneIn) {
       super(idIn, nameIn, orbitIn);
       bodyType = type;
       zone = zoneIn;
    }
-   public void fill(Geosphere g, Atmosphere a, Biosphere b) {
+   public void fill(ArrayList<Resource> g, ArrayList<Resource> a, ArrayList<Resource> b) {
       geo = g;
       bio = b;
    }

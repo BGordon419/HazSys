@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Star extends Body {
 
    private String spectralClass;
@@ -5,7 +7,7 @@ public class Star extends Body {
    private String habitableZone;
    private String diameter;
 
-   private Photosphere photo;
+   private ArrayList<Resource> photo;
 
    public Star(String nameIn, String idIn, String orbitIn
               ,String specClass, String sizeIn, String habZone, String dia) {
@@ -17,7 +19,7 @@ public class Star extends Body {
       diameter = dia;
    }
 
-   public void fill(Photosphere ps) {
+   public void fill(ArrayList<Resource> ps) {
       photo = ps;
    }
    public Star copy() {
