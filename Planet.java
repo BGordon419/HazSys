@@ -2,7 +2,6 @@ import java.util.ArrayList;
 
 public class Planet extends Body {
 
-   private String bodyType;
    private String zone;
 
    private ArrayList<Resource> geo;
@@ -10,9 +9,8 @@ public class Planet extends Body {
    private ArrayList<Resource> hydro;
    private ArrayList<Resource> bio;
 
-   public Planet(String nameIn, String idIn, String orbitIn, String type, String zoneIn) {
+   public Planet(String idIn, String nameIn, String orbitIn, String zoneIn) {
       super(idIn, nameIn, orbitIn);
-      bodyType = type;
       zone = zoneIn;
    }
    public void fill(ArrayList<Resource> g, ArrayList<Resource> a,
@@ -24,9 +22,9 @@ public class Planet extends Body {
    }
 
    public Planet copy() {
-      return new Planet(super.getId(), super.getName(), bodyType, super.getOrbit(), zone);
+      return new Planet(super.getId(), super.getName(), super.getOrbit(), zone);
    }
    public String toString() {
-      return super.toString()+", Type: "+bodyType+", Zone: "+zone;
+      return super.toString()+", Type: Planet/Large Moon, Zone: "+zone;
    }
 }

@@ -9,7 +9,7 @@ public class Star extends Body {
 
    private ArrayList<Resource> photo;
 
-   public Star(String nameIn, String idIn, String orbitIn
+   public Star(String idIn, String nameIn, String orbitIn
               ,String specClass, String sizeIn, String habZone, String dia) {
 
       super(idIn, nameIn, orbitIn);
@@ -23,7 +23,7 @@ public class Star extends Body {
       photo = ps;
    }
    public Star copy() {
-      Star newStar = new Star(super.getName(), super.getId(), super.getOrbit(),
+      Star newStar = new Star(super.getId(), super.getName(), super.getOrbit(),
                               spectralClass, size, habitableZone, diameter);
       newStar.fill(photo);
       return newStar;
