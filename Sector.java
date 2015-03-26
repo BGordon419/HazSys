@@ -53,9 +53,6 @@ public class Sector {
    public ArrayList<StarSystem> getSystems() {
       return systems;
    }
-   public int numberOfSystems() {
-      return systems.size();
-   }
 
 // Utils
    public Sector copy(Sector newSector) {

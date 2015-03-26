@@ -16,6 +16,13 @@ public class Moon extends Body {
       bio = b;
    }
 
+   public ArrayList<Resource> getGeosphere() {
+      return geo;
+   }
+   public ArrayList<Resource> getBiosphere() {
+      return bio;
+   }
+
    public Moon copy() {
       return new Moon(super.getId(), super.getName(), super.getOrbit(), zone);
    }

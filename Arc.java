@@ -21,6 +21,19 @@ public class Arc extends Body {
       bio = b;
    }
 
+   public ArrayList<Resource> getGeosphere() {
+      return geo;
+   }
+   public ArrayList<Resource> getAtmosphere() {
+      return atmo;
+   }
+   public ArrayList<Resource> getHydrosphere() {
+      return hydro;
+   }
+   public ArrayList<Resource> getBiosphere() {
+      return bio;
+   }
+
    public Arc copy() {
       return new Arc(super.getId(), super.getName(), super.getOrbit(), zone);
    }

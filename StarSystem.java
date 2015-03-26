@@ -27,6 +27,13 @@ public class StarSystem {
       bodies = bodyIn;
    }
 
+   public ArrayList<Body> getBodies() {
+      return bodies;
+   }
+   public ArrayList<Wormhole> getWormholes() {
+      return wormholes;
+   }
+
    public StarSystem copy() {
       StarSystem newSystem =  new StarSystem(systemId, name, coords, eod, wormholes, bodies);
       return newSystem;

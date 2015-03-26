@@ -18,10 +18,14 @@ public class Star extends Body {
       habitableZone = habZone;
       diameter = dia;
    }
-
    public void fill(ArrayList<Resource> ps) {
       photo = ps;
    }
+
+   public ArrayList<Resource> getPhotosphere() {
+      return photo;
+   }
+
    public Star copy() {
       Star newStar = new Star(super.getId(), super.getName(), super.getOrbit(),
                               spectralClass, size, habitableZone, diameter);

@@ -14,6 +14,10 @@ public class GasGiant extends Body {
       atmo = a;
    }
 
+   public ArrayList<Resource> getAtmosphere() {
+      return atmo;
+   }
+
    public GasGiant copy() {
       return new GasGiant(super.getId(), super.getName(), super.getOrbit(), zone);
    }
